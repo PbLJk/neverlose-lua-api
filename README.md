@@ -1,6 +1,6 @@
-# betav3 Lua API
+# NeverLose Lua API
 
-Lua API documentation for betav3. Start with the compatibility table; the newer reference is only partially implemented.
+Lua API documentation for NeverLose. Start with the compatibility table; the newer reference is only partially implemented.
 
 - [Compatibility](docs/compatibility.md)
 - [Getting started](docs/getting-started.md)
