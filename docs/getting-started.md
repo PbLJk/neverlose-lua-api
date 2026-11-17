@@ -1,76 +1,23 @@
-# Быстрый старт
+# Getting started
 
-[Главная](../README.md) · [Справочник](reference.md) · [Примеры](../examples/README.md)
+Place a `.lua` script in the `scripts` folder beside your config folder and load it in Extensions.
 
-## Создание и загрузка
-
-1. Открой вкладку **Extensions** в меню.
-2. Нажми **+**, укажи имя и вставь Lua-код.
-3. Нажми **Save**, чтобы сохранить файл, или **Save & Reload**, чтобы сохранить
-   и загрузить его. У существующего скрипта редактор открывается кнопкой **…**.
-4. Список можно обновить кнопкой Refresh. Кнопки загрузки и остановки находятся
-   рядом с соответствующим скриптом.
-
-Чтобы установить готовый пример, скопируй только нужный `.lua` из папки
-[examples](../examples/README.md) в `C:\neverwin\scripts` и обнови список Extensions.
-
-## Минимальный пример
+Existing lowercase API example:
 
 ```lua
-print("Script loaded")
-
-events.on("paint", function()
-    render.text(24, 90, color(255, 255, 255), "Hello, Lua!")
-end)
+local tab = ui.tab("Example")
+local group = tab:group("Settings")
+local enabled = group:checkbox("Enabled", true)
+print("Enabled:", enabled:get())
 ```
 
-`print` выводит сообщение при загрузке. Обработчик `paint` вызывается при
-отрисовке; функции рисования `render.*` должны вызываться внутри него.
-Цвет задаётся как `color(r, g, b, a)`, значения каналов — от 0 до 255.
-
-## Элемент меню
+New value-type example (Allow Insecure must already be enabled):
 
 ```lua
-local tab = ui.tab("Lua Examples")
-local group = tab:group("Overlay")
-local enabled = group:checkbox("Show example", true)
-
-events.on("paint", function()
-    if not enabled:get() then
-        return
-    end
-
-    render.text(24, 90, color(255, 255, 255), "Enabled")
-end)
+local v = Vector(3, 4, 0)
+print(v:Length()) -- 5
+local direction = QAngle(0, 90, 0):GetForward()
+print(direction.x, direction.y, direction.z)
 ```
 
-Ссылка на элемент хранится в `enabled`. Метод `:get()` возвращает его текущее
-значение. Другие элементы и методы описаны в разделе [UI](reference.md#ui).
-
-## Файлы и ресурсы
-
-| Путь | Назначение |
-| --- | --- |
-| `C:\neverwin\scripts` | Основные файлы `.lua` |
-| `C:\neverwin\scripts\images` | Изображения и SVG |
-| `C:\neverwin\scripts\fonts` | Пользовательские шрифты |
-| `C:\neverwin\scripts\particles` | Ресурсы частиц |
-| `C:\neverwin\scripts\data` | Данные файлового API |
-| `C:\neverwin\scripts\data\db` | JSON-хранилища `db` |
-
-Редактор текущей сборки работает с UTF-8 и файлами до 256 КиБ.
-При сохранении через редактор не нужно вводить полный путь к файлу.
-
-## Контексты и ошибки
-
-- Рисование вызывай внутри `paint`.
-- `wl.cmd` используй только внутри соответствующего `createmove`.
-- `wl.view` относится к `override_view`, а `wl.event` — к своему обработчику.
-- `trace.*` и `engine.simulate` имеют ограничения по контексту: смотри
-  [справочник](reference.md#environment).
-- `ffi`, запись памяти и другие помеченные методы требуют Allow Insecure.
-  Примеры из этого репозитория этот режим не используют.
-
-Если скрипт не загружается, проверь текст ошибки в выводе Lua, кодировку,
-имена функций и допустимый контекст. Для отчёта о проблеме достаточно
-минимального кода и номера сборки.
+The first example describes the existing native API. The math example was exercised in the standalone LuaJIT checks; it is not an in-game test receipt.

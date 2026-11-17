@@ -1,51 +1,78 @@
-# Neverlose Lua API
+# betav3 Lua API
 
-Документация Lua API для нашей сборки CS2: события, меню, отрисовка,
-игровые объекты и вспомогательные модули.
+Lua API documentation for betav3. Start with the compatibility table; the newer reference is only partially implemented.
 
-[Быстрый старт](docs/getting-started.md) · [Полный справочник](docs/reference.md) · [Примеры](examples/README.md)
+- [Compatibility](docs/compatibility.md)
+- [Getting started](docs/getting-started.md)
+- [Existing API reference](docs/legacy-api.md)
 
-## Первый скрипт
+## New reference specification
 
-Создай скрипт через **Extensions → +**, вставь код и нажми **Save & Reload**:
+Converted from the supplied docs.zip. API pages marked reference-only are not implemented merely because they appear here.
 
-```lua
-print("Hello from Neverlose Lua!")
+- [data / filesystem](docs/new-api/data/filesystem.md)
+- [data / json](docs/new-api/data/json.md)
+- [data / msgpack](docs/new-api/data/msgpack.md)
+- [engine / console](docs/new-api/engine/console.md)
+- [engine / engine](docs/new-api/engine/engine.md)
+- [engine / entity](docs/new-api/engine/entity.md)
+- [engine / globals](docs/new-api/engine/globals.md)
+- [engine / memory](docs/new-api/engine/memory.md)
+- [engine / nav](docs/new-api/engine/nav.md)
+- [engine / random](docs/new-api/engine/random.md)
+- [engine / schema](docs/new-api/engine/schema.md)
+- [engine / sounds](docs/new-api/engine/sounds.md)
+- [engine / trace](docs/new-api/engine/trace.md)
+- [engine / value](docs/new-api/engine/value.md)
+- [events / cheat](docs/new-api/events/cheat.md)
+- [events / game](docs/new-api/events/game.md)
+- [input / cmd](docs/new-api/input/cmd.md)
+- [input / input](docs/new-api/input/input.md)
+- [input / motion](docs/new-api/input/motion.md)
+- [input / ragebot](docs/new-api/input/ragebot.md)
+- [lua / base](docs/new-api/lua/base.md)
+- [lua / bit](docs/new-api/lua/bit.md)
+- [lua / ffi](docs/new-api/lua/ffi.md)
+- [lua / jit](docs/new-api/lua/jit.md)
+- [lua / math](docs/new-api/lua/math.md)
+- [lua / string](docs/new-api/lua/string.md)
+- [lua / table.clear](docs/new-api/lua/table.clear.md)
+- [lua / table](docs/new-api/lua/table.md)
+- [lua / table.new](docs/new-api/lua/table.new.md)
+- [mathlib / aabb](docs/new-api/mathlib/aabb.md)
+- [mathlib / angle](docs/new-api/mathlib/angle.md)
+- [mathlib / color](docs/new-api/mathlib/color.md)
+- [mathlib / euler](docs/new-api/mathlib/euler.md)
+- [mathlib / mathlib](docs/new-api/mathlib/mathlib.md)
+- [mathlib / matrix3x4](docs/new-api/mathlib/matrix3x4.md)
+- [mathlib / quaternion](docs/new-api/mathlib/quaternion.md)
+- [mathlib / rect](docs/new-api/mathlib/rect.md)
+- [mathlib / transform](docs/new-api/mathlib/transform.md)
+- [mathlib / vector](docs/new-api/mathlib/vector.md)
+- [mathlib / vector2](docs/new-api/mathlib/vector2.md)
+- [mathlib / vector4d](docs/new-api/mathlib/vector4d.md)
+- [mathlib / vectoraligned](docs/new-api/mathlib/vectoraligned.md)
+- [mathlib / vmatrix](docs/new-api/mathlib/vmatrix.md)
+- [mathlib / vplane](docs/new-api/mathlib/vplane.md)
+- [networking / http](docs/new-api/networking/http.md)
+- [networking / netchan](docs/new-api/networking/netchan.md)
+- [networking / protobuf](docs/new-api/networking/protobuf.md)
+- [networking / websocket](docs/new-api/networking/websocket.md)
+- [rendering / esp](docs/new-api/rendering/esp.md)
+- [rendering / indicators](docs/new-api/rendering/indicators.md)
+- [rendering / panorama](docs/new-api/rendering/panorama.md)
+- [rendering / particles](docs/new-api/rendering/particles.md)
+- [rendering / projection](docs/new-api/rendering/projection.md)
+- [rendering / render](docs/new-api/rendering/render.md)
+- [rendering / ui](docs/new-api/rendering/ui.md)
+- [rendering / view](docs/new-api/rendering/view.md)
+- [runtime / cloud](docs/new-api/runtime/cloud.md)
+- [runtime / events](docs/new-api/runtime/events.md)
+- [runtime / hwmon](docs/new-api/runtime/hwmon.md)
+- [runtime / log](docs/new-api/runtime/log.md)
+- [runtime / time](docs/new-api/runtime/time.md)
+- [runtime / utils](docs/new-api/runtime/utils.md)
 
-events.on("paint", function()
-    render.text(24, 90, color(255, 255, 255), "Hello, Lua!")
-end)
-```
+Source archive SHA-256: `03baf00bab560b33ff851579800e45a310b1c91d8090677a45d58c4d8db5ef65`.
 
-Готовые примеры можно положить в `C:\neverwin\scripts` и загрузить через
-Extensions. Это действующий путь текущей сборки; имя каталога не переименовывалось.
-
-## Разделы API
-
-| Раздел | Что внутри |
-| --- | --- |
-| [Окружение](docs/reference.md#environment) | LuaJIT, песочница, пути и допустимые контексты |
-| [События](docs/reference.md#events) | `paint`, `menu_toggled`, игровые события и отписка |
-| [Типы](docs/reference.md#types) | `vector`, `color`, расширения `math`, `json`, `db` |
-| [Entity](docs/reference.md#entity) | Игроки, оружие и свойства объектов |
-| [Render](docs/reference.md#render) | Текст, фигуры, изображения, шрифты и масштаб |
-| [Trace](docs/reference.md#trace) | Линии, объёмы и результаты трассировок |
-| [UI](docs/reference.md#ui) | Вкладки, группы, элементы и обращения к меню |
-| [Engine и globals](docs/reference.md#engine) | Состояние игры, время и ввод |
-| [Client и config](docs/reference.md#client) | Профиль, сообщения, настройки и бинды |
-| [Команды и камера](docs/reference.md#cmd) | Контекст `createmove` и [override_view](docs/reference.md#view) |
-| [Particle и ESP](docs/reference.md#particle) | Частицы и [элементы ESP](docs/reference.md#esp) |
-| [Utils](docs/reference.md#utils) | Кодировки, хеши и время |
-| [Insecure API](docs/reference.md#insecure) | Возможности, требующие Allow Insecure |
-
-## Как читать справочник
-
-В обычных скриптах используются Lua-имена функций, а не адреса из бинарника.
-Знак `?` у аргумента означает, что он необязательный; `(?)` отмечает детали,
-которые ещё требуют проверки. Основа справочника получена реверсом и передана
-владельцем проекта; совместимость каждого метода с каждой сборкой не проверялась.
-
-## Сообщить о проблеме
-
-Создай [Issue](https://github.com/PbLJk/neverlose-lua-api/issues) и приложи
-минимальный пример, версию сборки, текст ошибки и ожидаемый результат.
+To publish, copy the contents of this folder into your documentation repository, including README.md and docs/. No GitHub token, DLL or config is included.
